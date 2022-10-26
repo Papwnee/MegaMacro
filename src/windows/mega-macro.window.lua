@@ -41,7 +41,7 @@ end
 
 local function GetMacroButtonUI(index)
 	local buttonName = "MegaMacro_MacroButton" .. index
-	return _G[buttonName], _G[buttonName .. "Name"], _G[buttonName .. "Icon"]
+	return _G[buttonName], _G[buttonName .. "Name"], _G[buttonName].Icon
 end
 
 -- Creates the button frames for the macro slots
@@ -151,7 +151,7 @@ local function RefreshSelectedMacroIcon()
 		end
 	end
 
-	MegaMacro_FrameSelectedMacroButtonIcon:SetTexture(displayedTexture)
+	-- MegaMacro_FrameSelectedMacroButtonIcon:SetTexture(displayedTexture)
 end
 
 local function SelectIcon(texture)
@@ -177,7 +177,7 @@ local function SelectMacro(macro)
 	SelectedMacro = nil
 	MegaMacro_PopupFrame:Hide()
 	MegaMacro_FrameSelectedMacroName:SetText("")
-	MegaMacro_FrameSelectedMacroButtonIcon:SetTexture("")
+	-- MegaMacro_FrameSelectedMacroButtonIcon:SetTexture("")
 	MegaMacro_FrameText:SetText("")
 	MegaMacro_EditButton:Disable();
 	MegaMacro_DeleteButton:Disable();
@@ -192,7 +192,7 @@ local function SelectMacro(macro)
 			buttonFrame:SetChecked(true)
 			SelectedMacro = macro
 			MegaMacro_FrameSelectedMacroName:SetText(macro.DisplayName)
-			MegaMacro_FrameSelectedMacroButtonIcon:SetTexture(buttonIcon:GetTexture())
+			-- MegaMacro_FrameSelectedMacroButtonIcon:SetTexture(buttonIcon:GetTexture())
 			MegaMacro_FrameText:SetText(macro.Code)
 			MegaMacro_EditButton:Enable();
 			MegaMacro_DeleteButton:Enable();
@@ -226,7 +226,7 @@ local function SetMacroItems()
 			buttonFrame.Macro = macro
 			buttonFrame.IsNewButton = false
 			buttonFrame:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square", "ADD")
-			buttonName:SetText(macro.DisplayName)
+			-- buttonName:SetText(macro.DisplayName)
 			local data = MegaMacroIconEvaluator.GetCachedData(macro.Id)
 			buttonIcon:SetTexture(data and data.Icon)
 			buttonIcon:SetDesaturated(false)
@@ -236,7 +236,7 @@ local function SetMacroItems()
 			buttonFrame.Macro = nil
 			buttonFrame.IsNewButton = true
 			buttonFrame:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square", "ADD")
-			buttonName:SetText("")
+			-- buttonName:SetText("")
 			buttonIcon:SetTexture(PlusTexture)
 			buttonIcon:SetDesaturated(true)
 			buttonIcon:SetTexCoord(.08, .92, .08, .92)
@@ -245,8 +245,8 @@ local function SetMacroItems()
 		else
 			buttonFrame.Macro = nil
 			buttonFrame.IsNewButton = false
-			buttonFrame:SetHighlightTexture(nil)
-			buttonName:SetText("")
+			-- buttonFrame:SetHighlightTexture(nil)
+			-- buttonName:SetText("")
 			buttonIcon:SetTexture("")
 			buttonIcon:SetDesaturated(false)
 			buttonIcon:SetTexCoord(0, 1, 0, 1)
@@ -687,7 +687,7 @@ function MegaMacro_PopupFrame_OnUpdate()
 	end
 
 	-- Scrollbar stuff
-	FauxScrollFrame_Update(MegaMacro_PopupScrollFrame, ceil(numMacroIcons / NUM_ICONS_PER_ROW) + 1, NUM_ICON_ROWS, MACRO_ICON_ROW_HEIGHT );
+	-- FauxScrollFrame_Update(MegaMacro_PopupScrollFrame, ceil(numMacroIcons / NUM_ICONS_PER_ROW) + 1, NUM_ICON_ROWS, MACRO_ICON_ROW_HEIGHT );
 end
 
 function MegaMacro_PopupButton_OnClick(self)
@@ -737,7 +737,7 @@ function MegaMacro_IconSearchBox_TextChanged()
 end
 
 MegaMacroLastShiftClickInsertAt = nil
-hooksecurefunc("SpellButton_OnModifiedClick", function(self)
+hooksecurefunc(SpellButtonMixin, "OnModifiedClick", function(self)
 	-- for some reason this callback is triggered twice, this will prevent that
 	if MegaMacroSystemTime == MegaMacroLastShiftClickInsertAt then
 		return

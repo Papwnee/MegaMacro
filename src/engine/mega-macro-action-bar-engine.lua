@@ -25,6 +25,7 @@ local BlizzardActionBars = { "Action", "MultiBarBottomLeft", "MultiBarBottomRigh
 local rangeTimer = 5
 local updateRange = false
 
+
 local ActionsBoundToMegaMacros = {}
 
 local function UpdateCurrentActionState(button, functions, abilityId)
@@ -254,24 +255,24 @@ local function UpdateRange(button, functions, abilityId, target)
 		end
 	end
 
-    if button.HotKey:GetText() == RANGE_INDICATOR then
-		if checksRange then
-			button.HotKey:Show();
-			if ( inRange ) then
-				button.HotKey:SetVertexColor(LIGHTGRAY_FONT_COLOR:GetRGB());
-            else
-				button.HotKey:SetVertexColor(RED_FONT_COLOR:GetRGB());
-			end
-		else
-			button.HotKey:Hide();
-		end
-	else
-		if checksRange and not inRange then
-			button.HotKey:SetVertexColor(RED_FONT_COLOR:GetRGB());
-		else
-			button.HotKey:SetVertexColor(LIGHTGRAY_FONT_COLOR:GetRGB());
-		end
-	end
+--    if button.HotKey:GetText() == RANGE_INDICATOR then
+--		if checksRange then
+--			button.HotKey:Show();
+--			if ( inRange ) then
+--				button.HotKey:SetVertexColor(LIGHTGRAY_FONT_COLOR:GetRGB());
+--            else
+--				button.HotKey:SetVertexColor(RED_FONT_COLOR:GetRGB());
+--			end
+--		else
+--			button.HotKey:Hide();
+--		end
+--	else
+--		if checksRange and not inRange then
+--			button.HotKey:SetVertexColor(RED_FONT_COLOR:GetRGB());
+--		else
+--			button.HotKey:SetVertexColor(LIGHTGRAY_FONT_COLOR:GetRGB());
+--		end
+--	end
 end
 
 local function UpdateActionBar(button, macroId)
